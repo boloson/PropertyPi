@@ -27,7 +27,7 @@
 
         <?php
 //Connect to MySQL
-        $mysqli = mysqli_connect("localhost", "home", "123456", "property");
+        $mysqli = mysqli_connect("localhost", "home", "123456", "property"); //("hostname", "username", "password", "database")
         $query  = "SHOW TABLES";
         $result = mysqli_query($mysqli, $query);
 
@@ -64,6 +64,13 @@
             $mysqli2    = mysqli_connect("localhost", "home", "123456", "property");
             $query2     = "SELECT * FROM " . $tableName[$j];
             $result2    = mysqli_query($mysqli2, $query2);
+			
+			if (!$result2) {
+				echo "DB error, could not list tables";
+				echo "MySQL Error: " . mysql_error();
+				exit;
+			}
+
             $fieldCount = mysqli_field_count($mysqli2);
 
             $finfo      = mysqli_fetch_fields($result2);
