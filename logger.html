@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" type="text/css" href="default.css">
+        <link rel="stylesheet" type="text/css" href="table.css">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>
+        <script>
+
+            $(document).ready(function() {
+                var formSelect = $('#formSelect');
+
+                $('#' + formSelect.val()).show();
+
+                formSelect.change(function() {
+                    $('table.entryTable').hide();
+                    $('#' + formSelect.val()).show();
+
+                });
+                
+                $('.datePicker').val(new Date().toJSON().slice(0,10));
+            });
+
+
+        </script>
+
+    </head>
+    <body>
+        <div id="header">
+            <h1 align="center">Transaction Logger</h1>
+        </div>
+
+        <div align="center">
+
+            <form method="post" action="submit.php">
+
+                <span style="font-size:1.3em">Category</span>
+                <span>
+                    <select id="formSelect" name="tableName" style="font-size:1.2em">
+                        <option value="expense">Expense</option>
+                        <option value="mileage">Mileage</option>
+                        <option value="interestPayment">Interest Payment</option>
+                        <option value="rentIncome">Rent Income</option>
+                    </select>
+                </span>
+
+                <table class="entryTable" id="expense" style="text-align: left; margin-left: auto; margin-right: auto;">
+                    <tr><th>Field Name</th><th>Value</th></tr>
+                    <tr><td>Date:</td><td><input class="datePicker" name="e_date" type=date></td></tr>
+                    <tr><td>Company:</td><td><input name="e_company" type="text" ></td></tr>
+                    <tr><td>Description</td><td><input type="text" name="e_description"></td></tr>
+                    <tr><td>Amount</td><td><input type="number" step="any" name="e_amount"></td></tr>
+                    <tr><td>Payment Type:</td><td><input type="text" name="e_paymentType"></td></tr>
+                    <tr><td>Reference</td><td><input type="text" name="e_reference"></td></tr>
+                </table>
+
+                <table class="entryTable" id="mileage" style="text-align: left; margin-left: auto; margin-right: auto;">
+                    <tr><th>Field Name</th><th>Value</th></tr>
+                    <tr><td>Date:</td><td><input class="datePicker" type=date name="m_date"></td></tr>
+                    <tr><td>Description</td><td><input type="text" name="m_description"></td></tr>
+                    <tr><td>Mileage (km)</td><td><input type="number" step="any" name="m_mileage"></td></tr>
+                </table>
+
+                <table class="entryTable" id="interestPayment" style="text-align: left; margin-left: auto; margin-right: auto;">
+                    <tr><th>Field Name</th><th>Value</th></tr>
+                    <tr><td>Date:</td><td><input class="datePicker" type=date name="ip_date"></td></tr>
+                    <tr><td>Bank name</td><td><input type="text" name="ip_bankName"></td></tr>
+                    <tr><td>Account Number</td><td><input type="text" name="ip_accountNumber"></td></tr>
+                    <tr><td>Amount</td><td><input type="number" step="any" name="ip_amount"></td></tr>
+                </table>
+
+                <table class="entryTable" id="rentIncome" style="text-align: left; margin-left: auto; margin-right: auto;">
+                    <tr><th>Field Name</th><th>Value</th></tr>
+                    <tr><td>Date:</td><td><input class="datePicker" type=date name="ri_date"></td></tr>
+                    <tr><td>Tenant</td><td><input type="text" name="ri_tenant"></td></tr>
+                    <tr><td>Amount</td><td><input type="number" step="any" name="ri_amount"></td></tr>
+                    <tr><td>Comment</td><td><input type="text" name="ri_comment"></td></tr>
+
+                </table>
+
+                <br>
+                <input align="center" name="submit" value="Submit" type="submit">
+                <br><br><br>
+                <span  style="font-size:1.3em;"><a href="viewdata.php">View Transactions</a></span>
+            </form>
+
+        </div>
+
+    </body>
+</html>
