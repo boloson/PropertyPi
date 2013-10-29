@@ -11,8 +11,23 @@
                 top:0;
                 bottom:0;
                 /*background: linear-gradient(to bottombottom,  rgba(162,162,162,1) 1%,rgba(162,162,162,1) 20%,rgba(228,228,228,1) 77%,rgba(228,228,228,1) 100%);  */
-
+				
+				animation: slideIn 0.5s;;
+				animation-timing-function:ease-in;
+				-webkit-animation-timing-function:ease-in;
+				-webkit-animation: slideIn 0.5s; 
             }
+			
+			@keyframes slideIn{
+				from	{margin-left:-220px};
+				to		{};
+			}
+			
+			@-webkit-keyframes slideIn{	/* Safari and Chrome */
+				from	{margin-left:-220px};
+				to		{};
+			}
+		
 
             div#sidebar ul{
                 padding-left: 0em;
